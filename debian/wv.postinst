@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+# Replace /usr/share/doc/wv with a symlink to .../libwv-1.2-3.  See
+# Bug#264606 for reasons why dpkg won't do this on its own.  Due to
+# the order of unpacking, doing this in the preinst would lead to an
+# empty /usr/share/doc/libwv-1.2-3 directory.
+if [ "$1" = configure ] && dpkg --compare-versions "$2" lt-nl 1.2.1-1; then
+	rm -rf /usr/share/doc/wv
+	ln -sf libwv-1.2-3 /usr/share/doc/wv
+fi
+# (The above can be removed in etch+1.)
+
+#DEBHELPER#

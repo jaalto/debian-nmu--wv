@@ -1,0 +1,33 @@
+Upstream sources of wv were obtained from <http://wvware.sourceforge.net/>.
+
+The original author is Caolan McNamara <Caolan.McNamara@ul.ie>.  It is
+currently maintained by Dom Lachowicz <cinamod@hotmail.com>.
+
+wv was packaged for Debian by Martin Schulze <joey@debian.org>, and
+subsequently maintained by Matej Vela <vela@debian.org>.
+
+wv is distributed under the GNU General Public License.
+
+  All files are released and authored according to the notices in
+  the source, except for the files utf.c, hdr.h, plan9.h which are
+  from the `tcs' package whose notice is listed here:
+
+  * The authors of this software are Rob Pike and Howard Trickey.
+  *              Copyright (c) 1992 by AT&T.
+  * Permission to use, copy, modify, and distribute this software for any
+  * purpose without fee is hereby granted, provided that this entire notice
+  * is included in all copies of any software which is or includes a copy
+  * or modification of this software and in all copies of the supporting
+  * documentation for such software.
+  * THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+  * WARRANTY.  IN PARTICULAR, NEITHER THE AUTHORS NOR AT&T MAKE ANY
+  * REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
+  * OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+         - Rob Pike, AT&T Bell Laboratories
+
+The Debian packaging is copyright (C) 1994-1998 Martin Schulze,
+(C) 1999-2006 Matej Vela, and also released under the terms of the GNU
+General Public License; version 2, or any later version.
+
+On Debian systems, the complete text of the GNU General Public License
+can be found in /usr/share/common-licenses/GPL.

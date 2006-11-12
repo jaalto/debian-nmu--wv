@@ -1,0 +1,85 @@
+#!/usr/bin/make -f
+# Copyright (C) 1994-1998  Martin Schulze <joey@debian.org>
+# Copyright (C) 1999-2006  Matej Vela <vela@debian.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+export CFLAGS := -Wall -g -O$(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),0,2)
+
+export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+confflags := --prefix=/usr \
+	     --mandir=/usr/share/man \
+	     --with-libwmf
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	confflags += --build=$(DEB_HOST_GNU_TYPE)
+else
+	confflags += --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
+endif
+
+include /usr/share/dpatch/dpatch.make
+
+build: build-stamp
+build-stamp: patch-stamp
+	dh_testdir
+
+	ln -sf /usr/share/misc/config.sub /usr/share/misc/config.guess .
+	./configure $(strip $(confflags))
+	$(MAKE)
+
+	> $@
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+
+	[ ! -f GNUmakefile ] || $(MAKE) distclean
+	rm -f config.sub config.guess
+
+	dh_clean
+
+export DH_OPTIONS
+
+install: DH_OPTIONS =
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean
+
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+
+binary-arch: DH_OPTIONS = -a
+binary-indep: DH_OPTIONS = -i
+binary-%: DH_OPTIONS = -p$*
+binary binary-%: install
+	dh_installdirs
+	dh_link
+	dh_install
+	dh_installchangelogs
+	dh_installdocs
+	dh_installmime
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs -V
+	dh_installdeb
+	dh_shlibdeps -Llibwv-1.2-3 -ldebian/libwv-1.2-3/usr/lib
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean install binary

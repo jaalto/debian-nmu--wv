@@ -1,0 +1,9 @@
+detect-imagick.dpatch
+man-refs.dpatch
+man-wvrtf-name.dpatch
+man-wvware-options.dpatch
+non-latin-latex.dpatch
+wvdvi-output-ext.dpatch
+wvmime.dpatch
+wvtext-no-graphics.dpatch
+wvware-no-placeholder.dpatch

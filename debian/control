@@ -1,0 +1,63 @@
+Source: wv
+Section: text
+Priority: optional
+Maintainer: Daniel Walrond <debian@djw.org.uk>
+Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 5), dpatch, autotools-dev, libglib2.0-dev, libgsf-1-dev (>= 1.13.0), zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev (>= 0.2.7-1)
+
+Package: wv
+Architecture: any
+Conflicts: mswordview
+Replaces: mswordview
+Provides: mswordview
+Depends: ${shlibs:Depends}
+Suggests: tetex-extra, gs, elinks | links | lynx, imagemagick, gv | postscript-viewer
+Description: Programs for accessing Microsoft Word documents
+ wvWare (previously known as mswordview) is a library that allows access
+ to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
+ Word 95, and Word 6 file formats.  (Work is underway to support reading
+ earlier formats as well: Word 2 documents are converted to plain text.)
+ .
+ This package provides the following programs:
+ .
+  * wvWare: Converts to HTML and LaTeX.  It's used by a small army of
+    helper scripts able to preview Word documents and convert them to
+    various other formats, like PostScript, PDF, DVI, etc.
+ .
+  * wvRTF: Converts to Microsoft's Rich Text Format.
+ .
+  * wvSummary: Displays the summary information stream of all OLE2 files,
+    i.e. Excel, PowerPoint, Visio, Access, etc.
+ .
+  * wvVersion: Outputs the version of the Word format a document is stored
+    in.
+ .
+ Note that conversion to DVI, PostScript, or PDF requires the tetex-extra
+ package; PDF conversion also requires Ghostscript.  Having ELinks, Links,
+ or Lynx will greatly improve the plain text output.  ImageMagick may help
+ with the quality of images.  If you wish to preview Word documents from
+ the comfort of your mail reader, install a PostScript viewer like gv.
+
+Package: libwv-1.2-3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Library for accessing Microsoft Word documents
+ wvWare (previously known as mswordview) is a library that allows access
+ to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
+ Word 95, and Word 6 file formats.  (Work is underway to support reading
+ earlier formats as well: Word 2 documents are converted to plain text.)
+ .
+ This package contains the shared library.
+
+Package: libwv-dev
+Section: libdevel
+Architecture: any
+Depends: libwv-1.2-3 (= ${Source-Version}), libglib2.0-dev, libgsf-1-dev, zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev
+Description: Development files for the wvWare library
+ wvWare (previously known as mswordview) is a library that allows access
+ to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
+ Word 95, and Word 6 file formats.  (Work is underway to support reading
+ earlier formats as well: Word 2 documents are converted to plain text.)
+ .
+ This package contains the static library and header files.

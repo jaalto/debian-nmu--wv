@@ -1,0 +1,361 @@
+wv (1.2.4-2) unstable; urgency=low
+
+  * Thanks to Matej Vela for all his work on the package.
+  * New maintainer is Daniel Walrond. Closes: #379466.
+  * New uploader is Stuart Teasdale.
+
+ -- Daniel Walrond <debian@djw.org.uk>  Sun, 12 Nov 2006 20:12:19 +0000
+
+wv (1.2.4-1) unstable; urgency=high
+
+  * QA upload.
+  * New upstream release.
+    - Version 1.2.3 fixes multiple integer overflows.  [CVE-2006-4513]
+      Closes: #396256.
+    - Version 1.2.4 fixes unfiltered input in wvHandleCommandField(), and
+      potential segfaults in wvBeginDocument() and wvEndDocument().
+      There's no CVE, and no mention of security implications, but this
+      still might be worth backporting to stable.
+    - SONAME changed to libwv-1.2-3, though there have been no changes to
+      the ABI.  Dumbass upstream.
+
+ -- Matej Vela <vela@debian.org>  Tue, 31 Oct 2006 08:00:15 +0100
+
+wv (1.2.2-1) unstable; urgency=low
+
+  * QA upload.
+  * New upstream release.
+
+ -- Matej Vela <vela@debian.org>  Tue, 12 Sep 2006 16:26:34 +0200
+
+wv (1.2.1-2) unstable; urgency=low
+
+  * Orphaning.
+  * Drop .la file.  Closes: #374746.
+  * Conforms to Standards version 3.7.2.
+
+ -- Matej Vela <vela@debian.org>  Sat, 22 Jul 2006 20:46:26 +0200
+
+wv (1.2.1-1) unstable; urgency=low
+
+  * New upstream release.  Closes: #240087.
+  * Acknowledge NMU (thanks, Mikael!).  Closes: #200772.
+  * Split off libwv-1.2-1 and libwv-dev.  Closes: #93065.
+  * Update build dependencies:
+    - Replace libglib1.2-dev with libglib2.0-dev.
+    - Add libgsf-1-dev.
+    - Add libpng12-dev.
+    - Replace libexpat1-dev with libxml2-dev.
+  * Switch to debhelper 5.
+  * Switch to dpatch.
+  * Automatically update config.sub and config.guess from autotools-dev.
+  * wvDVI.in: Avoid `are the same file' error when the output extension is
+    `.dvi'.  Closes: #309524.
+  * wvMime: If available, use see(1) from mime-support.
+  * wvWare.c (wvStrangeNoGraphicData): Remove dangling reference to
+    placeholder.eps.  Closes: #197979.
+  * help/man/wvAbw.1, help/man/wvCleanLatex.1, help/man/wvDVI.1,
+    help/man/wvHtml.1, help/man/wvSummary.1, help/man/wvText.1:
+    Ensure that all man pages have a consistent set of references.
+  * help/man/wvRTF.1: Fix NAME section.  Closes: #339398.
+  * help/man/wvWare.1: Document all options.  Closes: #200776, #334769.
+  * debian/changelog: Remove `closes' keyword from 0.1.0-2 entry to avoid
+    Lintian warnings.
+  * debian/control: Suggest elinks and links as alternatives to lynx for
+    plain text output.
+  * debian/copyright: Update upstream URL.
+  * debian/rules:
+    - Update FSF address.
+    - Add support for DEB_BUILD_OPTIONS=noopt.
+  * debian/wv.mime:
+    - Remove `copiousoutput' flag from wvMime entry.  Closes: #220207.
+    - Use `priority=1' to rank behind OpenOffice.org (`priority=3') and
+      AbiWord (`priority=2').  Closes: #350134.
+    - Use the wvText script now that it accepts /dev/stdout for output.
+    - Remove `print' commands; neither OpenOffice.org nor AbiWord provide
+      them, and wvText makes a poor default.
+  * debian/watch: Add.
+  * Conforms to Standards version 3.6.2.
+
+ -- Matej Vela <vela@debian.org>  Sat, 18 Mar 2006 19:21:07 +0100
+
+wv (1.0.2-0.1) unstable; urgency=high
+
+  * NMU to fix security bug, it also applies to the sarge version.
+	
+  * New upstream release, with fix for security bugg with
+    CAN-2004-0645 (Closes: #264972)
+
+  * wvText.in has changed, so the diff doesn't apply any more.
+
+  * debian/rules L33: Checking for GNUmakefile instead for makefile
+	
+  * debian/rules L43: bin/make_epses.sh,bin/wv-*config and share/wv/ttf 
+    doesn't not exists any more
+
+  * debian/rules L44,L45: Some removed files. README still exists, but the 
+    other doesn't exists in 1.0.2.
+
+  * help/man/GNUmakefile.am: L1, adding share to manonedir 
+    (aclocal-1.8 and automake-1.8 need to be runned after that and give some 
+     warnings)
+
+ -- Mikael Sennerholm <mikan@debian.org>  Wed, 11 Aug 2004 11:44:10 +0200
+
+wv (0.7.4-1) unstable; urgency=low
+
+  * New upstream release:
+    - char is no longer assumed to be signed.  Closes: #176381.
+  * Acknowledge NMU.  Closes: #165262, #166500.
+  * text.c (wvConvertUnicodeToLaTeX): Disable debugging code which causes
+    spurious output for non-Latin-1 files.  Thanks to Peter Novodvorsky
+    for the patch.  Closes: #171193.
+  * wvDVI.in, wvPDF.in, wvPS.in: Fix ImageMagick check.  Closes: #160925.
+  * wvText.in: Use `--nographics', as suggested by Edmund GRIMLEY EVANS.
+  * Makefile.in, exporter/Makefile.in: Disable `-ansi -pedantic' in order
+    to get declarations for non-ANSI functions like fdopen.
+  * wvWare.c: Remove declaration of strdup; without `-ansi' strdup is a
+    macro and this expands to garbage.
+  * Add imagemagick to Suggests (wv{DVI,PDF,PS} like to use convert).
+  * Remove libwmf-bin from Suggests (conversion to EPS is built-in now).
+  * Explain in the description what the suggested packages are for.
+  * debian/mime: Specify `copiousoutput' rather than `needsterminal'.
+    Closes: #179624.
+  * debian/rules: Remove `debug' support and enable `-g' by default.
+  * Conforms to Standards version 3.5.8.
+
+ -- Matej Vela <vela@debian.org>  Thu, 20 Feb 2003 20:53:53 +0100
+
+wv (0.7.2-2.1) unstable; urgency=low
+
+  * Non-Maintainer Upload (BSP 2002-11).
+  * Changed Build-Depends on libwmf-dev from (>= 0.2.2-2) to (>= 0.2.7-1)
+    (closes: bug#166500, bug#165262).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 23 Nov 2002 14:11:05 +0100
+
+wv (0.7.2-2) unstable; urgency=low
+
+  * Link against libwmf0.2-6 to avoid #141203.
+
+ -- Matej Vela <vela@debian.org>  Mon, 26 Aug 2002 22:49:15 +0200
+
+wv (0.7.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Switch to debhelper 4.
+
+ -- Matej Vela <vela@debian.org>  Mon, 29 Apr 2002 22:42:13 +0200
+
+wv (0.7.1+rvt-2) unstable; urgency=low
+
+  * Link with expat instead of libxml2 to be consistent with libwmf.
+
+ -- Matej Vela <vela@debian.org>  Sat, 13 Apr 2002 19:36:25 +0200
+
+wv (0.7.1+rvt-1) unstable; urgency=low
+
+  * New upstream version.
+  * help/man/wvSimpleCLX.1: wvSimpleCLX is gone; removed.
+
+ -- Matej Vela <vela@debian.org>  Mon, 21 Jan 2002 17:03:41 +0100
+
+wv (0.7.0-3) unstable; urgency=medium
+
+  * fbse.c, wv.h, wvRTF.c, wvWare.c: Patched from AbiWord CVS to fix a
+    segmentation fault.  Closes: #126230.
+
+ -- Matej Vela <vela@debian.org>  Thu, 27 Dec 2001 15:49:02 +0100
+
+wv (0.7.0-2) unstable; urgency=medium
+
+  * wvMime: Use `wvPS --targetdir'.  Closes: #120417.
+  * Don't include make_epses.sh as the new wvPS converts images on its
+    own.
+
+ -- Matej Vela <vela@debian.org>  Fri, 23 Nov 2001 13:31:27 +0100
+
+wv (0.7.0-1) unstable; urgency=low
+
+  * New upstream version:
+    * wvCleanLatex, wvDVI, wvLatex no longer munge slashes in
+      filenames.  Closes: #112101.
+  * make_epses.sh: Handle documents with no embedded WMF.
+    Closes: #111838.
+  * make_epses.sh, wvMime, wvText: Handle whitespace in filenames.
+    Closes: #113958.
+  * Suggest tetex-extra for ulem.sty (used for underlining).
+    Closes: #118692.
+
+ -- Matej Vela <vela@debian.org>  Sun, 11 Nov 2001 11:42:02 +0100
+
+wv (0.6.7-1) unstable; urgency=low
+
+  * New upstream version.
+  * make_epses.sh: Use wmf2eps (libwmf2) rather than wmftoeps, after
+    checking whether it's installed.  Closes: #110675.
+
+ -- Matej Vela <vela@debian.org>  Sun,  2 Sep 2001 17:16:21 +0200
+
+wv (0.6.5-1) unstable; urgency=medium
+
+  * New upstream version.  Closes: #93411.
+  * Updated config.guess and config.sub.  Closes: #105013.
+  * Added MIME support.  Closes: #82062.
+  * Switched to debhelper 3.
+  * Conforms to Standards version 3.5.6.
+
+ -- Matej Vela <vela@debian.org>  Wed,  1 Aug 2001 00:54:28 +0200
+
+wv (0.6.2-1) unstable; urgency=low
+
+  * New upstream version.  Closes: Bug#59942, Bug#61773, Bug#71139,
+    Bug#71683, Bug#72270, Bug#74855, Bug#75074, Bug#80428.
+  * magick/utility.c, wvMime, wvText.in: Fixed /tmp race conditions.
+  * Wrote (forgotten?) wvSimpleCLX.1.
+  * wvPDF: Use ps2pdf instead of distill.  Closes: Bug#77297.
+  * debian/control:
+    * Suggest gs (needed for wvPDF), postscript-viewer (needed for
+      wvMime), libwmf-bin (needed for make_epses.sh), lynx (needed for
+      wvText), tetex-bin (needed for wvDVI).
+    * Expanded description.
+  * Conforms to Standards version 3.2.1:
+    * debian/rules: Added support for the `debug' build option.
+
+  * These can't be fixed without very large diffs: (Should be sorted out
+    with upstream shortly.)
+    * libwv.a and headers excluded -- this should be a shared library.
+      It'll have to wait until libtool is fully integrated...
+    * Not built with libmagick5-dev due to problems with configure
+      detecting it (caused by <magick/config.h> redefining HasPNG)...
+
+ -- Matej Vela <vela@debian.org>  Sun,  7 Jan 2001 18:07:58 +0100
+
+wv (0.6.0-1) unstable; urgency=low
+
+  * New upstream vesrion
+  * New upstream source package name
+  * NMU (Closes: #72270, #59942)
+  * Updated Build-depends
+
+ -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 12 Oct 2000 03:30:00 -0700
+
+mswordview (0.5.14-bw6-2) unstable; urgency=low
+
+  * Conforms to Standards version 3.1.0:
+    * debian/control:
+      * Suggesting `lynx | www-browser' instead of `www-browser' as
+        recommended in section 8.6 of the Packaging Manual.
+      * Added build dependancies.
+
+ -- Matej Vela <vela@debian.org>  Sat,  6 Nov 1999 19:58:36 +0100
+
+mswordview (0.5.14-bw6-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Fixed insecure uses of temporary storage.  Closes: Bug#45450.
+  * Using realclean instead of distclean for cleaning to ensure that
+    lex.yy.c is removed.
+  * Renamed notes/summaryinfo/readme.orig to
+    notes/summaryinfo/readme.original in the pristine source tarball
+    so that it isn't removed by dh_clean.
+  * Conforms to Standards version 3.0.1:
+    * Changed debian/copyright to reference
+      `/usr/share/common-licenses/GPL'.
+
+ -- Matej Vela <vela@debian.org>  Wed, 22 Sep 1999 07:13:46 +0200
+
+mswordview (0.5.14-1) unstable; urgency=low
+
+  * New upstream version.
+  * Simplified debian/rules by making use of `make distclean'.
+
+ -- Matej Vela <vela@debian.org>  Fri, 28 May 1999 19:45:21 +0200
+
+mswordview (0.5.12-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Matej Vela <vela@debian.org>  Mon, 17 May 1999 02:02:57 +0200
+
+mswordview (0.5.11-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added `$(includedir)' to installdirs in Makefile.in to make
+    the installation of header files possible.
+  * Adapted paths in the new scripts wv-incconfig and wv-libconfig.
+  * Wrote manual pages for wv-incconfig and wv-libconfig.  Modified
+    Makefile.in to install them.
+
+ -- Matej Vela <vela@debian.org>  Thu, 13 May 1999 15:18:39 +0200
+
+mswordview (0.5.10-1) unstable; urgency=low
+
+  * New upstream version.
+  * Linked with the newly-packaged libwmf.  Closes: Bug#36058.
+  * Added `1999' to debian/copyright.
+
+ -- Matej Vela <vela@debian.org>  Sun,  9 May 1999 20:02:52 +0200
+
+mswordview (0.5.6-1) unstable; urgency=low
+
+  * New upstream version.
+  * New maintainer.
+  * Removed debian/conffiles which seems to have been accidentally
+    copied from sysklogd.
+  * Added the `tcs' copyright directly to debian/copyright.
+  * Simplified debian/rules and converted to debhelper.
+  * Fixed a typo in the description and reformatted it.
+  * Changed Priority to optional and Section to text (this is what
+    both catdoc and word2x use).
+  * Updated Standards-Version to 2.5.0.0.
+
+ -- Matej Vela <vela@debian.org>  Sun, 11 Apr 1999 15:50:20 +0200
+
+mswordview (0.5.1-2) unstable; urgency=low
+
+  * Corrected files, darn binary files were added/removed so diff and cvs
+    were confused.
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Tue,  9 Feb 1999 00:51:14 +0100
+
+mswordview (0.5.1-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Mon,  8 Feb 1999 22:49:17 +0100
+
+mswordview (0.4.4-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Thu, 24 Sep 1998 01:52:26 +0200
+
+mswordview (0.1.0-2) unstable; urgency=low
+
+  * Modified laola/Makefile.in in order not to screw the paths again.
+    (closes: Bug#26710)
+  * Adjusted the manpage.
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Tue, 22 Sep 1998 03:01:58 +0200
+
+mswordview (0.1.0-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Sun,  6 Sep 1998 23:06:42 +0000
+
+mswordview (0.0.25-1) unstable; urgency=low
+
+  * New upstream version, now with free UTF conversion routines
+  * Added /usr/lib/mswordview to perl path for laola programs, fixes
+    unreported bug
+  * Changed libdir to /usr/lib/mswordview
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Wed, 8 Jul 1998 01:23:28 +0200
+
+mswordview (0.0.24-1) unstable; urgency=low
+
+  * First version
+
+ -- Martin Schulze <joey@finlandia.infodrom.north.de>  Thu, 25 Jun 1998 20:57:49 +0200

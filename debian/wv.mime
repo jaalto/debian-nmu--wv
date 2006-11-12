@@ -1,0 +1,2 @@
+application/msword; wvMime %s; description=Microsoft Word Document; test=test -n "$DISPLAY"; priority=1
+application/msword; wvText %s /dev/stdout; description=Microsoft Word Document; copiousoutput; priority=1
