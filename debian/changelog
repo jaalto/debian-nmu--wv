@@ -1,3 +1,23 @@
+wv (1.2.4-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+    - Move to packaging format "3.0 (quilt)".
+  * debian/compat
+    - Update to 8.
+  * debian/control
+    - (Build-Depends): update to debhelper 8.
+    - (Homepage): Add.
+    - (Standards-Version): Update to 3.9.2.
+    - (Suggests): Change obsolete gs to ghostscript (Closes: #566762).
+  * debian/copyright
+    - Update to DEP 5.
+  * debian/patches/series
+    - Rename from 00list.
+  * debian/source/format
+    - New file.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Sun, 25 Sep 2011 15:48:24 +0300
+
 wv (1.2.4-2) unstable; urgency=low
 
   * Thanks to Matej Vela for all his work on the package.
