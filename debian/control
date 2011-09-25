@@ -12,7 +12,7 @@ Conflicts: mswordview
 Replaces: mswordview
 Provides: mswordview
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Suggests: tetex-extra, ghostscript, elinks | links | lynx, imagemagick, gv | postscript-viewer
+Suggests: texlive, ghostscript, elinks | links | lynx, imagemagick, gv | postscript-viewer
 Description: Programs for accessing Microsoft Word documents
  wvWare (previously known as mswordview) is a library that allows access
  to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
