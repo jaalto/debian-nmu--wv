@@ -8,7 +8,8 @@ wv (1.2.4-2.1) unstable; urgency=low
     - (Build-Depends): update to debhelper 8.
     - (Homepage): Add.
     - (Standards-Version): Update to 3.9.2.
-    - (Suggests): Change obsolete gs to ghostscript (Closes: #566762).
+    - (Suggests): Change obsolete gs to ghostscript and tetex-extra to
+      texlive (Closes: #566762).
   * debian/copyright
     - Update to DEP 5.
   * debian/patches/series
@@ -16,7 +17,7 @@ wv (1.2.4-2.1) unstable; urgency=low
   * debian/source/format
     - New file.
 
- -- Jari Aalto <jari.aalto@cante.net>  Sun, 25 Sep 2011 15:48:24 +0300
+ -- Jari Aalto <jari.aalto@cante.net>  Sun, 25 Sep 2011 15:52:59 +0300
 
 wv (1.2.4-2) unstable; urgency=low
 
