@@ -2,16 +2,17 @@ Source: wv
 Section: text
 Priority: optional
 Maintainer: Daniel Walrond <debian@djw.org.uk>
-Standards-Version: 3.7.2
-Build-Depends: debhelper (>= 5), dpatch, autotools-dev, libglib2.0-dev, libgsf-1-dev (>= 1.13.0), zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev (>= 0.2.7-1)
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 8), autotools-dev, libglib2.0-dev, libgsf-1-dev (>= 1.13.0), zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev (>= 0.2.7-1)
+Homepage: http://sourceforge.net/projects/wvware
 
 Package: wv
 Architecture: any
 Conflicts: mswordview
 Replaces: mswordview
 Provides: mswordview
-Depends: ${shlibs:Depends}
-Suggests: tetex-extra, gs, elinks | links | lynx, imagemagick, gv | postscript-viewer
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Suggests: tetex-extra, ghostscript, elinks | links | lynx, imagemagick, gv | postscript-viewer
 Description: Programs for accessing Microsoft Word documents
  wvWare (previously known as mswordview) is a library that allows access
  to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
@@ -41,7 +42,7 @@ Description: Programs for accessing Microsoft Word documents
 Package: libwv-1.2-3
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Library for accessing Microsoft Word documents
  wvWare (previously known as mswordview) is a library that allows access
  to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
@@ -53,7 +54,7 @@ Description: Library for accessing Microsoft Word documents
 Package: libwv-dev
 Section: libdevel
 Architecture: any
-Depends: libwv-1.2-3 (= ${Source-Version}), libglib2.0-dev, libgsf-1-dev, zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev
+Depends: ${misc:Depends}, libwv-1.2-3 (= ${Source-Version}), libglib2.0-dev, libgsf-1-dev, zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev
 Description: Development files for the wvWare library
  wvWare (previously known as mswordview) is a library that allows access
  to Microsoft Word files.  It can load and parse the Word 2000, Word 97,
