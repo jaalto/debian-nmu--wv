@@ -30,10 +30,8 @@ else
 	confflags += --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
 endif
 
-include /usr/share/dpatch/dpatch.make
-
 build: build-stamp
-build-stamp: patch-stamp
+build-stamp:
 	dh_testdir
 
 	ln -sf /usr/share/misc/config.sub /usr/share/misc/config.guess .
@@ -42,7 +40,7 @@ build-stamp: patch-stamp
 
 	> $@
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp
