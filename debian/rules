@@ -35,8 +35,20 @@ build-stamp:
 	dh_testdir
 
 	ln -sf /usr/share/misc/config.sub /usr/share/misc/config.guess .
+
+
+	# Backup files due to modifications below and autoreconf
+	for f in aclocal.m4 *.in */*.in *.am configure INSTALL depcomp install-sh ltmain.sh missing mkinstalldirs; do cp $$f $$f.orig; done
+
+	# See http://wiki.debian.org/RpathIssue
+	sed --in-place --regexp-extended 's/(hardcode_into_libs)=.*/\1=no/' ./configure aclocal.m4
+
+	sed --in-place --regexp-extended 's/(CFLAGS|CPPFLGAS)/AM_\1/' GNUmakefile.am
+	autoreconf -vfi
+
 	./configure $(strip $(confflags))
 	$(MAKE)
+	for f in aclocal.m4 *.in */*.in *.am configure INSTALL depcomp install-sh ltmain.sh missing mkinstalldirs; do mv $$f.orig $$f; done
 
 	> $@
 
