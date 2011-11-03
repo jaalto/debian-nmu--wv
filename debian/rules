@@ -43,7 +43,7 @@ build-stamp:
 	# See http://wiki.debian.org/RpathIssue
 	sed --in-place --regexp-extended 's/(hardcode_into_libs)=.*/\1=no/' ./configure aclocal.m4
 
-	sed --in-place --regexp-extended 's/(CFLAGS|CPPFLGAS)/AM_\1/' GNUmakefile.am
+	sed --in-place --regexp-extended 's/(CFLAGS|CPPFLAGS)/AM_\1/' GNUmakefile.am
 	autoreconf -vfi
 
 	./configure $(strip $(confflags))
