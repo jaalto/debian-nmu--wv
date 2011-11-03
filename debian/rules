@@ -39,6 +39,8 @@ build-stamp:
 
 	# Backup files due to modifications below and autoreconf
 	for f in aclocal.m4 *.in */*.in *.am configure INSTALL depcomp install-sh ltmain.sh missing mkinstalldirs; do cp $$f $$f.orig; done
+	# autoreconf requires these
+	touch NEWS AUTHORS ChangeLog
 
 	# See http://wiki.debian.org/RpathIssue
 	sed --in-place --regexp-extended 's/(hardcode_into_libs)=.*/\1=no/' ./configure aclocal.m4
@@ -48,7 +50,9 @@ build-stamp:
 
 	./configure $(strip $(confflags))
 	$(MAKE)
+
 	for f in aclocal.m4 *.in */*.in *.am configure INSTALL depcomp install-sh ltmain.sh missing mkinstalldirs; do mv $$f.orig $$f; done
+	rm -f NEWS AUTHORS ChangeLog
 
 	> $@
 
