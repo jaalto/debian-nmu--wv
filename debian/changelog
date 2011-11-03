@@ -17,10 +17,12 @@ wv (1.2.4-2.1) unstable; urgency=low
     - Rename from 00list.
   * debian/rules
     - Delete dpatch.
+    - (build-stamp): Fix Lintian error binary-or-shlib-defines-rpath by
+      modifying "hardcode_into_libs" in configure files.
   * debian/source/format
     - New file.
 
- -- Jari Aalto <jari.aalto@cante.net>  Mon, 17 Oct 2011 10:57:22 +0300
+ -- Jari Aalto <jari.aalto@cante.net>  Thu, 03 Nov 2011 21:43:52 +0200
 
 wv (1.2.4-2) unstable; urgency=low
 
