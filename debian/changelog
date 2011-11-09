@@ -6,7 +6,7 @@ wv (1.2.4-2.1) unstable; urgency=low
     - Update to 8.
   * debian/control
     - (Build-Depends): update to debhelper 8. Remove dpatch, remove -N
-       Debian version suffix from libwmf-dev.
+       Debian version suffix from libwmf-dev. Add autoconf.
     - (Homepage): Add.
     - (Standards-Version): Update to 3.9.2.
     - (Suggests): Change obsolete gs to ghostscript and tetex-extra to
@@ -22,7 +22,7 @@ wv (1.2.4-2.1) unstable; urgency=low
   * debian/source/format
     - New file.
 
- -- Jari Aalto <jari.aalto@cante.net>  Thu, 03 Nov 2011 21:43:52 +0200
+ -- Jari Aalto <jari.aalto@cante.net>  Wed, 09 Nov 2011 15:20:16 +0200
 
 wv (1.2.4-2) unstable; urgency=low
 
