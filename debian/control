@@ -3,7 +3,7 @@ Section: text
 Priority: optional
 Maintainer: Daniel Walrond <debian@djw.org.uk>
 Standards-Version: 3.9.2
-Build-Depends: debhelper (>= 8), autotools-dev, libglib2.0-dev, libgsf-1-dev (>= 1.13.0), zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev (>= 0.2.7)
+Build-Depends: debhelper (>= 8), autoconf, autotools-dev, libglib2.0-dev, libgsf-1-dev (>= 1.13.0), zlib1g-dev, libpng12-dev, libxml2-dev, libwmf-dev (>= 0.2.7)
 Homepage: http://sourceforge.net/projects/wvware
 
 Package: wv
