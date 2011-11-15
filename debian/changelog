@@ -1,5 +1,6 @@
 wv (1.2.4-2.1) unstable; urgency=low
 
+  [Jari Aalto]
   * Non-maintainer upload.
     - Move to packaging format "3.0 (quilt)".
   * debian/compat
@@ -22,6 +23,10 @@ wv (1.2.4-2.1) unstable; urgency=low
       modifying "hardcode_into_libs" in configure files.
   * debian/source/format
     - New file.
+
+  [tony mancill]
+  * Update debian/rules to support BuildArchTarget.
+  * Add man-wvware-typo.patch. (Closes: #642346)
 
  -- Jari Aalto <jari.aalto@cante.net>  Wed, 09 Nov 2011 16:19:20 +0200
 

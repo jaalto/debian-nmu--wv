@@ -7,3 +7,4 @@ wvdvi-output-ext.patch
 wvmime.patch
 wvtext-no-graphics.patch
 wvware-no-placeholder.patch
+man-wvware-typo.patch
